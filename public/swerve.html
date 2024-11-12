@@ -17,136 +17,138 @@
         <h1>Code Breakdown: Swerve Drive</h1>
       </div>
     </div>
-    <div class='body container'>
-      <div class='body'>
+    <div class=main>
+      <div class='body-container'>
+        <div class='body'>
 
-        <!--TODO: write an intro-->
-        <p> 
-        lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. 
-        lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. 
-        </p> 
+          <!--TODO: write an intro-->
+          <p> 
+          lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. 
+          lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. lorem ipsum. 
+          </p> 
 
-        <p><strong>
-            General Code Structure: </strong>
+          <p><strong>
+              General Code Structure: </strong>
+            <ul>
+              <li>the Swerve Module object</li>
+              <li>a swerve drive subsystem</li>
+              <li>a drive train command</li>
+            </ul>
+          </p>
+
+          <p>
+            <h3>The Swerve Module Object</h3>
+            each individual wheel is controlled by 2 motors: one that controls velocity 
+            and another that controls the wheel's rotation. in order to collect enough 
+            information on our wheel rotation, we also had an external encoder for our 
+            angular motor that collected odometry information. so each swerve module takes 
+            the arguments:
+
+            <!--TODO: check arguments-->
+            <ul>
+              <li>velocity motor ID</li>
+              <li>angular motor ID</li>
+              <li>encoder ID for the angular motor</li>
+            </ul>
+
+            <!--TODO: elaborate-->
+            This folder also includes the PID configuration for the angular motor.
+
+            <!--TODO: check that method names are code accurate, 
+                      check that this is all the methods-->
+            some other helpful methods included in the file:
+            <ul>
+              <li>get SwerveModuleVelocity:
+                <br>&emsp;returns the current velocity of module</li>
+              <li>get SwerveModulePosition:
+                <br>&emsp;returns the current angular position of module
+                <br><u>Note:</u> we needed to do some trig here to get our encoder input
+                      into useable radian output </li>
+              <li>reset encoders</li>
+            </ul>
+          </p>
+
+          <p>
+            <h3>The Swerve Subsystem</h3> 
+          </p> 
+          
+          <!--TODO: make sure this section matches names in code-->
+          <p>
+            in this file, we instantiate each of our 4 swerve modules and write 
+            important methods that can be called later. the most relevant method 
+            is our drive method, which takes an xPercent, yPercent, rotationPercent, 
+            and (optionally) a field relative boolean as arguments.
+          </p>
+          <p>
+            xPercent and yPercent are joystick X and Y input (more on joystick control 
+            later) fed through a trapezoidal motion profile (AKA slew rate limiter)- 
+            which creates a smoother acceleration- and then multiplied by the maximum 
+            velocity, which is later passed to our motors as the speed.
+
+            rotationPercent is the rotational equivalent: joystick input fed through 
+            a trapazoidal profile limiting the angular acceleration, multiplied by our 
+            maximum angular velocity.
+          </p>
+
+          <p>
+            the field relative boolean changes the frame of reference, which can 
+            make driving easier. robot relative controls might define 'forward' as 
+            being towards the direction of front of the robot, while field relative 
+            mode may be towards the direction that the driver is facing. 
+          </p>
+
+          <!--TODO: check for excluded methods-->
+          <p>Other useful methods include:</p>
+
           <ul>
-            <li>the Swerve Module object</li>
-            <li>a swerve drive subsystem</li>
-            <li>a drive train command</li>
-          </ul>
-        </p>
-
-        <p>
-          <h3>The Swerve Module Object</h3>
-          each individual wheel is controlled by 2 motors: one that controls velocity 
-          and another that controls the wheel's rotation. in order to collect enough 
-          information on our wheel rotation, we also had an external encoder for our 
-          angular motor that collected odometry information. so each swerve module takes 
-          the arguments:
-
-          <!--TODO: check arguments-->
-          <ul>
-            <li>velocity motor ID</li>
-            <li>angular motor ID</li>
-            <li>encoder ID for the angular motor</li>
+            <li>getVelocity:
+                <br>&emsp;calculates the velocity of one of the velocity motors fed 
+                through a linear/gaussian filter</li>
+            <li>getRotation:
+                <br>&emsp;returns rotation minus any detected offset (our gyro had a 
+                method for this)</li>
+            <li>zeroYaw:
+                <br>&emsp;zeroes detected offset</li>
+            <li>hasHitSomething:
+                <br>&emsp;detected sharp drops in velocity, and was useful for autonomous 
+                functions</li>
           </ul>
 
-          <!--TODO: elaborate-->
-          This folder also includes the PID configuration for the angular motor.
+          <!--TODO: fix this paragraph -->
+          <p>
+            the rest of the file was dedicated towards collecting continuous updates 
+            from the motor controllers and joysticks, which (forgive me for any 
+            improper terminology useage) would probably equate to reading the twist 
+            messages
+          </p>
 
-          <!--TODO: check that method names are code accurate, 
-                    check that this is all the methods-->
-          some other helpful methods included in the file:
-          <ul>
-            <li>get SwerveModuleVelocity:
-              <br>&emsp;returns the current velocity of module</li>
-            <li>get SwerveModulePosition:
-              <br>&emsp;returns the current angular position of module
-              <br><u>Note:</u> we needed to do some trig here to get our encoder input
-                    into useable radian output </li>
-            <li>reset encoders</li>
-          </ul>
-        </p>
+          <p>
+            <h3>The Drive Command</h3>
+          </p>
 
-        <p>
-          <h3>The Swerve Subsystem</h3> 
-        </p> 
-        
-        <!--TODO: make sure this section matches names in code-->
-        <p>
-          in this file, we instantiate each of our 4 swerve modules and write 
-          important methods that can be called later. the most relevant method 
-          is our drive method, which takes an xPercent, yPercent, rotationPercent, 
-          and (optionally) a field relative boolean as arguments.
-        </p>
-        <p>
-          xPercent and yPercent are joystick X and Y input (more on joystick control 
-          later) fed through a trapezoidal motion profile (AKA slew rate limiter)- 
-          which creates a smoother acceleration- and then multiplied by the maximum 
-          velocity, which is later passed to our motors as the speed.
+          <p>
+            we took 3 main input values: the flightstick being pushed in the x 
+            direction, the y direction, and how the flightstick was being twisted. 
+            these were passed as the xPercent, yPercent, and rotationPercent arguments in our drive method from the swerve subsystem. 
+          </p>
 
-          rotationPercent is the rotational equivalent: joystick input fed through 
-          a trapazoidal profile limiting the angular acceleration, multiplied by our 
-          maximum angular velocity.
-        </p>
+          <p>
+            for additional fine-tuning, we added a small deadband to our inputs to 
+            prevent unwanted movement, and instead of passing joystick input directly 
+            into our drive method, we multiplied them by a certain amount less than 1 
+            to make the change in velocity less sensitive to large movements. 
+            additionally, we changed these values when holding down the trigger to 
+            simulate a 'fast mode' when traversing great distances.
+          </p>
 
-        <p>
-          the field relative boolean changes the frame of reference, which can 
-          make driving easier. robot relative controls might define 'forward' as 
-          being towards the direction of front of the robot, while field relative 
-          mode may be towards the direction that the driver is facing. 
-        </p>
+          <p>
+            finally, we had a toggle for field oriented drive and another for yaw 
+            zeroing, but as this file was for keybindings, really any method we 
+            found useful could be bound to any key here.
+          </p>
 
-        <!--TODO: check for excluded methods-->
-        <p>Other useful methods include:</p>
-
-        <ul>
-          <li>getVelocity:
-              <br>&emsp;calculates the velocity of one of the velocity motors fed 
-              through a linear/gaussian filter</li>
-          <li>getRotation:
-              <br>&emsp;returns rotation minus any detected offset (our gyro had a 
-              method for this)</li>
-          <li>zeroYaw:
-              <br>&emsp;zeroes detected offset</li>
-          <li>hasHitSomething:
-              <br>&emsp;detected sharp drops in velocity, and was useful for autonomous 
-              functions</li>
-        </ul>
-
-        <!--TODO: fix this paragraph -->
-        <p>
-          the rest of the file was dedicated towards collecting continuous updates 
-          from the motor controllers and joysticks, which (forgive me for any 
-          improper terminology useage) would probably equate to reading the twist 
-          messages
-        </p>
-
-        <p>
-          <h3>The Drive Command</h3>
-        </p>
-
-        <p>
-          we took 3 main input values: the flightstick being pushed in the x 
-          direction, the y direction, and how the flightstick was being twisted. 
-          these were passed as the xPercent, yPercent, and rotationPercent arguments in our drive method from the swerve subsystem. 
-        </p>
-
-        <p>
-          for additional fine-tuning, we added a small deadband to our inputs to 
-          prevent unwanted movement, and instead of passing joystick input directly 
-          into our drive method, we multiplied them by a certain amount less than 1 
-          to make the change in velocity less sensitive to large movements. 
-          additionally, we changed these values when holding down the trigger to 
-          simulate a 'fast mode' when traversing great distances.
-        </p>
-
-        <p>
-          finally, we had a toggle for field oriented drive and another for yaw 
-          zeroing, but as this file was for keybindings, really any method we 
-          found useful could be bound to any key here.
-        </p>
-
+          </div>
+        </div>
       </div>
-    </div>
   </body>
 </html>

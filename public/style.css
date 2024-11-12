@@ -27,3 +27,36 @@ p {
   border: 1px dotted pink;
   padding-right: 20px;
 }
+
+.main { 
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-container{
+  border: 1px solid red;
+  padding: 20px;
+  display: flex;
+  width: 200px;
+}
+
+.sidebar{
+  border: 1px dotted red;
+}
+
+.header-container{
+  display: flex;
+  justify-content: center;
+}
+
+.body-container{
+  border: 1px solid red;
+  padding: 20px;
+  display: flex;
+  width: 900px;
+}
+
+.body {
+  border: 1px dotted red;
+  justify-content: center;
+}
