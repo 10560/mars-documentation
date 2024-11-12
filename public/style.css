@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.top-bar-container {
+  border: 1px solid red;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-bar {
+  border: 1px dotted red;
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  border: 1px dotted pink;
+  padding-right: 20px;
+}
