@@ -1,0 +1,53 @@
+Swerve Drive: (hyprlink)
+a type of drive configuration where each wheel is controlled by 2 motors:
+one that controls its angular position and one that controls
+its forward velcity. 
+
+Mecanum Drive:
+a type of drive configuration where each wheel is made up of smaller, angled
+wheels. Placed so that the angled wheels make a sort of chevron pattern 
+(REWORD THIS), the turning of the wheels allow for greater motion freedom.
+effectively the precursor to swerve
+
+Tank Drive:
+Also known as Differential drive, this is a drive configuration in which 
+there are only 2 independent sets of wheel movement, and so turning
+is controlled by differences in velocity of either side. This configuration
+is the least agile, but has in years past proven useful is defensive manouvres
+due to its grippy wheels. 
+
+PID:
+
+Limelight:
+
+April Tags:
+
+Linear / Gaussian Filter:
+
+Setpoint:
+
+MARS:
+
+Drive train:
+
+motor controller:
+
+Talon:
+
+BAG motor:
+
+Redline motor:
+
+retroreflective tape:
+
+git:
+
+wpilib:
+
+swerve module:
+
+chassis:
+
+bag day:
+
+octocanum / butterfly drive:
