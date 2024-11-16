@@ -1,6 +1,6 @@
-#F2F4F3
-#BB0717
-#5E0B15
-#4C5B61
-#2E4057
-#141414
+#F2F4F3 --white
+#BB0717 --lred
+#5E0B15 --dred
+#4C5B61 --grey
+#2E4057 --blue
+#141414 --black

@@ -52,15 +52,36 @@ a:visited: {
 .navbar-container {
   border: 1px solid #bb0717;
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: center;
+  background-color: var(--white);
 }
 
 .navbar {
   border: 1px dotted #bb0717;
+  width: 80%;
   display: flex;
-  width: 900px;
   justify-content: space-between;
+}
 
+/* 
+.test-clamp{
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+}
+*/
+
+.words{
+  /*
+  h3 {
+    color: var(--blue);
+  }
+  p {
+    color: var(--lred);
+  }
+  */
 }
 
 .link {
@@ -69,6 +90,8 @@ a:visited: {
 }
 
 .main { 
+  width: 100%;
+  border: 1px solid var(--blue);
   display: flex;
   justify-content: center;
 }
@@ -77,7 +100,7 @@ a:visited: {
   border: 1px solid #bb0717;
   padding: 20px;
   display: flex;
-  width: 200px;
+  width: 10%;
 }
 
 .sidebar{
@@ -93,7 +116,7 @@ a:visited: {
   border: 1px solid #bb0717;
   padding: 20px;
   display: flex;
-  width: 900px;
+  width: 70%;
   flex-direction: column;
 }
 
