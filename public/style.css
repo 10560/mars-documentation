@@ -1,3 +1,12 @@
+:root {
+  --white: #F2F4F3;
+  --lred: #BB0717;
+  --dred: #5E0B15;
+  --grey: #4C5B61;
+  --blue: #2E4057;
+  --black: #141414;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +14,8 @@
 }
 
 body {
-  background-color: #130f0b;
-  color: #b4a9a9;
+  background-color: var(--white);
+  color: #141414;
 }
 
 p {
@@ -14,28 +23,40 @@ p {
   margin-top: 10px;
 }
 
+a:link {
+  color: #2e4057;
+}
+
+a:visited: {
+  color: #2e4057;
+}
+
 .top-bar-container {
-  border: 1px solid red;
+  border: 1px solid #bb0717;
   padding: 20px;
   display: flex;
   justify-content: center;
 }
 
 .top-bar {
-  border: 1px dotted red;
+  border: 1px dotted #bb0717;
   width: 900px;
   display: flex;
   justify-content: space-between;
 }
 
+.button-hug {
+  display: flex;
+}
+
 .navbar-container {
-  border: 1px solid red;
+  border: 1px solid #bb0717;
   display: flex;
   justify-content: center;
 }
 
 .navbar {
-  border: 1px dotted red;
+  border: 1px dotted #bb0717;
   display: flex;
   width: 900px;
   justify-content: space-between;
@@ -53,14 +74,14 @@ p {
 }
 
 .sidebar-container{
-  border: 1px solid red;
+  border: 1px solid #bb0717;
   padding: 20px;
   display: flex;
   width: 200px;
 }
 
 .sidebar{
-  border: 1px dotted red;
+  border: 1px dotted #bb0717;
 }
 
 .header-container{
@@ -69,13 +90,24 @@ p {
 }
 
 .body-container{
-  border: 1px solid red;
+  border: 1px solid #bb0717;
   padding: 20px;
   display: flex;
   width: 900px;
+  flex-direction: column;
+}
+
+.header-logo{
+  display: flex;
+  justify-content: center;
 }
 
 .body {
-  border: 1px dotted red;
+  border: 1px dotted #bb0717;
   justify-content: center;
+}
+
+.dark-mode {
+  background-color: var(--black);
+  color: var(--white);
 }
